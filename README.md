@@ -16,9 +16,9 @@ Após instalar as dependências, importe os dados das planilhas contidos no dire
 
 `php import.php`
 
-A partir do terminal, disponibilize o acesso a partir do diretório `/public` com o comando: `php -S localhost:8000`
+A partir do terminal, disponibilize o acesso a partir do diretório raiz com o comando: `php -S localhost:8000`
 
 Acesse o endereço no navegador: http://localhost:8000
 
-##TODO
+## TODO
 - Importar arquivos via upload, na interface?(sugestão de melhoria para o TP, não é requisito funcional)
