@@ -33,9 +33,9 @@ class ImportCSV
         $arrPesquisa = [];
         $arrPesquisa['descricaoPesquisa'] = $this->surveyName;
         $arrPesquisa['identificadorPesquisa'] = strtolower(str_replace(" ", "_", $this->surveyName));
-        $arrPesquisa['numeroQuestao'] = trim($line[0]);
-        $arrPesquisa['textoQuestao'] = trim($line[2]);
-        $arrPesquisa['entrevistados']  = trim($line[3]);
+        $arrPesquisa['numeroQuestao'] = filter_var(trim($line[0]),FILTER_SANITIZE_STRING);
+        $arrPesquisa['textoQuestao'] = filter_var(trim($line[2]), FILTER_SANITIZE_STRING);
+        $arrPesquisa['entrevistados']  = filter_var(trim($line[3]),FILTER_SANITIZE_STRING);
         $arrPesquisa['tipoQuestao'] = 1;
 
         $fileHandler->next();
@@ -43,14 +43,14 @@ class ImportCSV
           $lineItens = $fileHandler->fgetcsv(';');
           if( $lineItens[0] !== null && $lineItens[2] !== "" ){
             if( $lineItens[0] !== "" ){
-              $arrPesquisa['numeroQuestao'] = trim($lineItens[0]);
-              $arrPesquisa['textoQuestao']  = trim($lineItens[2]);
-              $arrPesquisa['entrevistados'] = trim($lineItens[3]);
+              $arrPesquisa['numeroQuestao'] = filter_var(trim($lineItens[0]), FILTER_SANITIZE_STRING);
+              $arrPesquisa['textoQuestao']  = filter_var(trim($lineItens[2]), FILTER_SANITIZE_STRING);
+              $arrPesquisa['entrevistados'] = filter_var(trim($lineItens[3]), FILTER_SANITIZE_STRING);
             }else{
               $arrPesquisa['resultado'][]  = [
-                'opcao' => trim($lineItens[2]), 
-                'votos'=> trim($lineItens[3]), 
-                'percentual'=>trim($lineItens[4]) 
+                'opcao' => filter_var(trim($lineItens[2]), FILTER_SANITIZE_STRING), 
+                'votos'=> filter_var(trim($lineItens[3]), FILTER_SANITIZE_STRING), 
+                'percentual'=>filter_var(trim($lineItens[4]), FILTER_SANITIZE_STRING)
               ];
             }
           }
@@ -63,7 +63,7 @@ class ImportCSV
         $arrPesquisa = [];
         $arrPesquisa['descricaoPesquisa'] = $this->surveyName;
         $arrPesquisa['identificadorPesquisa'] = strtolower(str_replace(" ", "_", $this->surveyName));
-        $arrPesquisa['bairro'] =  trim($line[0]);
+        $arrPesquisa['bairro'] =  filter_var(trim($line[0]),FILTER_SANITIZE_STRING);
         
         $fileHandler->next();
         $line = $fileHandler->fgetcsv(';');
@@ -79,15 +79,15 @@ class ImportCSV
             if( $lineItens[0] !== "" ){
               $questaoIndex = $lineItens[0];
               $questao = [];
-              $questao['numeroQuestao'] = trim($lineItens[0]);
-              $questao['textoQuestao']  = trim($lineItens[2]);
-              $questao['entrevistados'] = trim($lineItens[3]);
+              $questao['numeroQuestao'] = filter_var(trim($lineItens[0]),FILTER_SANITIZE_STRING);
+              $questao['textoQuestao']  = filter_var(trim($lineItens[2]),FILTER_SANITIZE_STRING);
+              $questao['entrevistados'] = filter_var(trim($lineItens[3]),FILTER_SANITIZE_STRING);
               $arrPesquisa['questoes'][$questaoIndex] = $questao;
             }else{                
               $arrPesquisa['questoes'][$questaoIndex]['resultado'][] =  [
-                'opcao' => trim($lineItens[2]), 
-                'votos'=> trim($lineItens[3]), 
-                'percentual'=>trim($lineItens[4]) 
+                'opcao' => filter_var(trim($lineItens[2]),FILTER_SANITIZE_STRING), 
+                'votos'=> filter_var(trim($lineItens[3]),FILTER_SANITIZE_STRING), 
+                'percentual'=>filter_var(trim($lineItens[4]),FILTER_SANITIZE_STRING   ) 
               ];
             }
           }
