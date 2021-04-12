@@ -9,6 +9,5 @@ $collection = $client->tp->survey;
 
 $result = $collection->findOne(['_id'=> new MongoDB\BSON\ObjectId($id)]);
 
-
 header('Content-type: application/json');
 echo json_encode($result);

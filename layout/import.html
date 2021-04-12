@@ -10,10 +10,8 @@
   <link rel="stylesheet" href="/layout/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <link rel="stylesheet" href="/layout/plugins/select2/css/select2.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/layout/dist/css/adminlte.min.css">
-
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -75,19 +73,19 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/layout/index.html" class="nav-link ">
+                <a href="/layout/index.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pesquisa geral</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/layout/index2.html" class="nav-link active">
+                <a href="/layout/index2.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pesquisa por localidade</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/layout/import.html" class="nav-link">
+                <a href="/layout/import.html" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Importar pesquisas</p>
                 </a>
@@ -108,12 +106,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Pesquisas por localidade</h1>
+            <h1>Importar Pesquisas</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Pesquisas por localidade</li>
+              <li class="breadcrumb-item active">Import</li>
             </ol>
           </div>
         </div>
@@ -127,7 +125,7 @@
           <div class="col-sm-12">
             <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Filtros para visualização e comparação de pesquisas</h3>
+                <h3 class="card-title">Upload de pesquisas CSV</h3>
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
                   </button>
@@ -135,63 +133,29 @@
                 </div>
               </div>
               <div class="card-body">
-                <div class="row">                  
-                  <div class="col-md-5">
-                    <div class="form-group">
-                      <label>Selecione uma pesquisa</label>
-                      <select class="form-control select2 selectPesquisa" data-pesquisa="P1">
-                        <option>Selecione...</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Selecione o bairro</label>
-                        <select class="form-control select2 selectBairro" id="selectBairroP1" data-pesquisa="P1">
-                          <option>Selecione...</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                      <label>Selecione a questão</label>
-                        <select class="form-control select2 selectQuestao" id="selectQuestaoP1" data-pesquisa="P1">
-                          <option>Selecione...</option>
-                        </select>
-                    </div>
+                <form id="form-upload">
+                  <div class="form-group">
+                    <label>Selecione os arquivos</label>
+                    <input type="file" name="file[]" multiple="multiple" id="file">
                   </div>
-                  <div class="col-md-2">
-                    <div class="row d-flex h-100 align-items-center justify-content-center">                      
-                      <p class="text-info">Comparando com</p>
-                    </div>
+                  <div class="form-group">
+                    <label>Descricao da pesquisa</label>
+                    <input type="text" name="survey_name" id="survey_name">
                   </div>
-                  <div class="col-md-5">
-                    <div class="form-group">
-                    <label>Selecione uma pesquisa</label>
-                      <select class="form-control select2 selectPesquisa" data-pesquisa="P2">
-                        <option>Selecione...</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label>Selecione o bairro</label>
-                        <select class="form-control select2 selectBairro" id="selectBairroP2" data-pesquisa="P2">
-                          <option>Selecione...</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                      <label>Selecione a questão</label>
-                        <select class="form-control select2 selectQuestao" id="selectQuestaoP2" data-pesquisa="P2">
-                          <option>Selecione...</option>
-                        </select>
-                    </div>
-                  </div>                  
-                </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6"> 
+          <div class="col-md-12"> 
             <!-- DONUT CHART -->
             <div class="card card-success">
               <div class="card-header">
-                <h3 class="card-title" id="titleQuestaoP1">Detalhes</h3>
+                <h3 class="card-title">Instruções</h3>
 
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
@@ -204,52 +168,74 @@
                   <span class="info-box-icon bg-info elevation-1"><i class="fas fa-question"></i></span>
 
                   <div class="info-box-content">
-                    <span class="info-box-text">Questão:</span>
-                    <span class="info-box-number" id="textoQuestaoP1">
+                    <span class="info-box-text">Como importar os dados de pesquisa?</span>
+                    <span class="info-box-number" id="textoQuestao">
                     </span>
-                    <span class="info-box-number" id="entrevistadosQuestaoP1">
-                    </span>
-                  </div>
-                  <!-- /.info-box-content -->
+                    <span class="text-info"><a href="https://drive.google.com/file/d/14D2mFFXEWeltV8Ob6QotrggdFJTjjTOc/view?usp=sharing">Baixe os arquivos de exemplo para realizar uma simulação.</a></span>
+                  </div>                
                 </div>
-                <canvas id="donutChartP1" style="min-height: 250px; height: 500px; max-height: 500px; max-width: 100%;"></canvas>
-              </div>
+                  <!-- /.info-box-content -->                
+                <div class="row">
+                    <div class="col-md-6">
+                      <h5>Exemplo de arquivo no formato "Pesquisa Geral"</h5>
+                      <table class="table table-bordered">
+                        <tr>
+                          <td>Número Questão</td>
+                          <td></td>
+                          <td>Título Questão</td>
+                          <td>Qtd. Entrevistados</td>
+                          <td>Percentual Correspondente</td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td>Número Resposta</td>
+                          <td>Descrição Resposta</td>
+                          <td>Qtd. Respostas</td>
+                          <td>Percentual Correspondente</td>
+                        </tr>
+                      </table>                      
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h5>Exemplo de arquivo no formato "Pesquisa por localidade"</h5>
+                      <table class="table table-bordered">
+                        <tr>
+                          <td>Localidade</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td>Tipo Pesquisa</td>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td>Número Questão</td>
+                          <td></td>
+                          <td>Título Questão</td>
+                          <td>Qtd. Entrevistados</td>
+                          <td>Percentual Correspondente</td>
+                        </tr>                        
+                        <tr>
+                          <td></td>
+                          <td>Número Resposta</td>
+                          <td>Descricao Resposta</td>
+                          <td>Qtd. Respostas</td>
+                          <td>Percentual Correspondente</td>
+                        </tr>
+                      </table>                      
+                    </div>                    
+                  </div>          
+                </div>                
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
-          <div class="col-md-6"> 
-            <!-- DONUT CHART 2-->
-            <div class="card card-success">
-              <div class="card-header">
-                <h3 class="card-title" id="titleQuestaoP2">Detalhes</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="info-box">
-                  <span class="info-box-icon bg-info elevation-1"><i class="fas fa-question"></i></span>
-
-                  <div class="info-box-content">
-                    <span class="info-box-text">Questão:</span>
-                    <span class="info-box-number" id="textoQuestaoP2">
-                    </span>
-                    <span class="info-box-number" id="entrevistadosQuestaoP2">
-                    </span>
-                  </div>
-                  <!-- /.info-box-content -->
-                </div>
-                <canvas id="donutChartP2" style="min-height: 250px; height: 500px; max-height: 500px; max-width: 100%;"></canvas>
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>          
-
         </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -280,29 +266,49 @@
 <script src="/layout/plugins/chart.js/Chart.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/layout/dist/js/adminlte.min.js"></script>
-
-<script src="/layout/plugins/select2/js/select2.full.min.js"></script>
-
-<script src="/layout/dist/js/chart.js"></script>
-<script src="/layout/dist/js/scripts.js"></script>
-
+<!-- AdminLTE for demo purposes -->
+<!-- <script src="/layout/dist/js/demo.js"></script> -->
 <!-- page script -->
 <script>
   $(function () {
 
-    $('.select2').select2();
+    var html = "";
+    var host = 'http://'+window.location.host;
 
-    let donutOptions     = {
-      maintainAspectRatio : false,
-      responsive : true,
-    }
+    $("#form-upload").on('submit',function(event){
+      event.preventDefault();
 
-    donutChartP1 = chartManager.startDonut('donutChartP1',donutOptions,'doughnut');
-    donutChartP2 = chartManager.startDonut('donutChartP2',donutOptions,'doughnut');
+      formData = new FormData($(this)[0]);
 
-    chartScripts.loadSelectPesquisa();
-    chartScripts.listenSelectPesquisaLocalidade();
-    chartScripts.loadSelectQuestaoBairro(donutChartP1,donutChartP2);
+      $.ajax({
+            url:'/upload.php',
+            type:'POST',
+            data:formData,
+            dataType:'json',
+            processData:false,
+            contentType:false,
+            // headers:{
+            //     'X-CSRF-Token':token,
+            // },
+            beforeSend:function(){
+                  
+            }
+        }).done(function(data){
+            alert('dados importados');
+        }).fail(function(jqXHR){
+            switch (jqXHR.status){
+                case 422:
+                  break;
+                case 404:
+                  break;
+                case 413:
+                  break;
+                default:
+                  break;
+            }
+        });      
+    });
+   
   })
 </script>
 </body>

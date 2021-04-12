@@ -1,6 +1,16 @@
 {
+  "name": "hcdias/visualizador_pesquisas",
+    "type": "project",
+    "description": "Exibicao de dados de pesquisas baseados em documentos não estruturados",
+    "keywords": [],
+    "license": "",
     "require": {
         "php": "^7.2",
         "mongodb/mongodb": "^1.5"
+    },
+    "autoload": {
+      "psr-4": {
+        "Helpers\\": "./"
+      }
     }
 }
