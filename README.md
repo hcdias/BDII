@@ -1,6 +1,11 @@
 # Visualizador de pesquisas eleitorais
 
-Painel para visualização de pesquisas eleitorais
+Painel para visualização de pesquisas eleitorais, atividade referente ao trabalho prático da disciplina CSI442 - Banco de Dados II.
+
+[Descricao TP](https://drive.google.com/file/d/1C-BKGCbA2bO5JhrJHpChY3TabN5vqLI0/view?usp=sharing)
+
+[Artigo apresentação](https://drive.google.com/file/d/1GjYKzFZeHE0NOolEKed8xs2FCf0kdCFf/view?usp=sharing)
+
 
 ## Dependências para executar o projeto
 
